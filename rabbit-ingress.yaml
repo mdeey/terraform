@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  creationTimestamp: null
+  name: rabbit-ingress
+spec:
+  defaultBackend: 
+    service: 
+      name: defaultsvc
+      port:
+        name: http
+  rules:
+  - host: mdeey.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: rabbit-service
+            port:
+              number: 8080
+        path: /path
+        pathType: Exact
+status:
+  loadBalancer: {}
